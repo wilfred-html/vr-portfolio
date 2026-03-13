@@ -651,45 +651,52 @@
             line-height: 2;
         }
 
-        /* Marquee */
-        .marquee {
-            padding: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .marquee-row {
-            padding: var(--space-34) 0;
-        }
-
-        .marquee-row:first-child {
+        /* Disciplines */
+        .disciplines {
+            padding: var(--space-144) var(--space-89);
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .marquee-inner {
-            display: inline-block;
+        .disciplines-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.06);
         }
 
-        .marquee-inner.forward {
-            animation: marquee-forward 240s linear infinite;
+        .discipline-item {
+            background: var(--black);
+            padding: var(--space-55) var(--space-34);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-21);
+            transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .marquee-inner.backward {
-            animation: marquee-backward 270s linear infinite;
+        .discipline-item:hover {
+            background: rgba(255, 255, 255, 0.03);
         }
 
-        .marquee:hover .marquee-inner {
-            animation-play-state: paused;
+        .discipline-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 2;
         }
 
-        .marquee-text {
-            font-size: clamp(3rem, 5vw, 5rem);
+        .discipline-name {
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
             font-weight: 600;
-            letter-spacing: 0.05em;
-            display: inline-block;
-            padding-right: var(--space-89);
-            line-height: 1.1;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        .discipline-desc {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 280px;
         }
 
         @keyframes marquee-forward {
@@ -1127,13 +1134,13 @@
                 font-size: clamp(1.8rem, 6vw, 2.5rem);
             }
             
-            /* Marquee */
-            .marquee-text {
-                font-size: clamp(1.5rem, 5vw, 2.5rem);
+            /* Disciplines */
+            .disciplines {
+                padding: 55px 34px;
             }
-            
-            .marquee-row {
-                padding: 21px 0;
+
+            .disciplines-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
             /* Collaborators */
@@ -1467,21 +1474,31 @@
         </div>
     </section>
 
-    <!-- Marquee -->
-    <div class="marquee">
-        <div class="marquee-row">
-            <div class="marquee-inner forward">
-                <span class="marquee-text">CREATIVE DIRECTION — STYLING — ART DIRECTION — FASHION — MUSIC — CREATIVE DIRECTION — STYLING — ART DIRECTION — FASHION — MUSIC — </span>
-                <span class="marquee-text">CREATIVE DIRECTION — STYLING — ART DIRECTION — FASHION — MUSIC — CREATIVE DIRECTION — STYLING — ART DIRECTION — FASHION — MUSIC — </span>
+    <!-- Disciplines -->
+    <section class="disciplines">
+        <div class="disciplines-grid">
+            <div class="discipline-item">
+                <span class="discipline-number">01</span>
+                <h3 class="discipline-name">Creative Direction</h3>
+                <p class="discipline-desc">Shaping visual narratives from concept to execution across fashion, music, and culture.</p>
+            </div>
+            <div class="discipline-item">
+                <span class="discipline-number">02</span>
+                <h3 class="discipline-name">Styling</h3>
+                <p class="discipline-desc">Curating looks that bridge streetwear, high fashion, and African identity.</p>
+            </div>
+            <div class="discipline-item">
+                <span class="discipline-number">03</span>
+                <h3 class="discipline-name">Art Direction</h3>
+                <p class="discipline-desc">Directing editorials, campaigns, and visual projects with a distinct point of view.</p>
+            </div>
+            <div class="discipline-item">
+                <span class="discipline-number">04</span>
+                <h3 class="discipline-name">Visual Culture</h3>
+                <p class="discipline-desc">Exploring the intersection of fashion, music, and contemporary South African identity.</p>
             </div>
         </div>
-        <div class="marquee-row">
-            <div class="marquee-inner backward">
-                <span class="marquee-text">VISUAL CULTURE — CREATIVE CONSULTING — BRANDING — CAMPAIGNS — EDITORIAL — VISUAL CULTURE — CREATIVE CONSULTING — BRANDING — CAMPAIGNS — EDITORIAL — </span>
-                <span class="marquee-text">VISUAL CULTURE — CREATIVE CONSULTING — BRANDING — CAMPAIGNS — EDITORIAL — VISUAL CULTURE — CREATIVE CONSULTING — BRANDING — CAMPAIGNS — EDITORIAL — </span>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- Collaborators Section -->
     <section class="collaborators">
@@ -2055,15 +2072,11 @@
         });
 
         // Marquee scroll speed variation
-        const marqueeForward = document.querySelector('.marquee-inner.forward');
-        const marqueeBackward = document.querySelector('.marquee-inner.backward');
         let marqueeSpeed = 1;
 
         lenis.on('scroll', ({ velocity }) => {
             marqueeSpeed = 1 + Math.abs(velocity) * 0.3;
-            if (marqueeForward && marqueeBackward) {
-                marqueeForward.style.animationDuration = `${30 / marqueeSpeed}s`;
-                marqueeBackward.style.animationDuration = `${35 / marqueeSpeed}s`;
+            if (false) {
             }
         });
     </script>
